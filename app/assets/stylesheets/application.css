@@ -1,10 +1,89 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f8f9fa;
+}
+
+div {
+  margin-top: 10px;
+}
+
+h1 {
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+button {
+    width: auto;
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+input[type="submit"], .actions input {
+  background-color: rgba(0, 255, 0, 0.3);
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: auto;
+}
+
+input[type="submit"]:hover, .actions input:hover {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+.movie-details {
+  background-color: white;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 20px 0;
+}
+
+.movie-details p {
+  margin: 10px 0;
+  padding: 5px;
+  border-bottom: 1px solid white;
+}
+
+.movie-form {
+  background-color: white;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 20px 0;
+}
+
+button[type="submit"] {
+    background-color: rgba(255, 0, 0, 0.8);
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    background-color: rgba(255, 0, 0, 0.9);
+}

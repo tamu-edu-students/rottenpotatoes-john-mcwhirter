@@ -1,10 +1,16 @@
+<% content_for :title, "Show Movie" %>
+
+<h1>Show Movie</h1>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @movie %>
 
+<div class="delete-movie">
+<%= button_to "Delete Movie", @movie, method: :delete, params: { sort: params[:sort], direction: params[:direction] } %>
+</div>
 <div>
   <%= link_to "Edit this movie", edit_movie_path(@movie, sort: params[:sort], direction: params[:direction]) %> |
   <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete, params: { sort: params[:sort], direction: params[:direction] } %>
 </div>

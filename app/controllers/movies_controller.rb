@@ -66,7 +66,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       sort_params = { sort: params[:sort], direction: params[:direction] }.compact
-      format.html { redirect_to movies_path(sort_params), notice: "Movie was successfully destroyed.", status: :see_other }
+      format.html { redirect_to movies_path(sort_params), notice: "Movie was successfully deleted.", status: :see_other }
       format.json { head :no_content }
     end
   end
