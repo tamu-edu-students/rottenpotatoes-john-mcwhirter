@@ -7,9 +7,21 @@
 <table id="movies_table">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Rating</th>
-        <th>Release Date</th>
+        <th>
+          <%= link_to "Title", movies_path(sort: 'title', direction: (@sort_column == 'title' && @sort_direction == 'asc') ? 'desc' : 'asc') %>
+          <%= '↑' if @sort_column == 'title' && @sort_direction == 'asc' %>
+          <%= '↓' if @sort_column == 'title' && @sort_direction == 'desc' %>
+        </th>
+        <th>
+          <%= link_to "Rating", movies_path(sort: 'rating', direction: (@sort_column == 'rating' && @sort_direction == 'asc') ? 'desc' : 'asc') %>
+          <%= '↑' if @sort_column == 'rating' && @sort_direction == 'asc' %>
+          <%= '↓' if @sort_column == 'rating' && @sort_direction == 'desc' %>
+        </th>
+        <th>
+          <%= link_to "Release Date", movies_path(sort: 'release_date', direction: (@sort_column == 'release_date' && @sort_direction == 'asc') ? 'desc' : 'asc') %>
+          <%= '↑' if @sort_column == 'release_date' && @sort_direction == 'asc' %>
+          <%= '↓' if @sort_column == 'release_date' && @sort_direction == 'desc' %>
+        </th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -19,7 +31,7 @@
           <td><%= movie.title %></td>
           <td><%= movie.rating %></td>
           <td><%= movie.release_date %></td>
-          <td><%= link_to "Show", movie %></td>
+          <td><%= link_to "Show", movie_path(movie, sort: @sort_column, direction: @sort_direction) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -30,4 +42,4 @@
     </tfoot>
 </table>
 
-<%= link_to "New movie", new_movie_path %>
+<%= link_to "New movie", new_movie_path(sort: @sort_column, direction: @sort_direction) %>

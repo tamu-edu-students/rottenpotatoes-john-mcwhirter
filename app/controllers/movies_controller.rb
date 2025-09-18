@@ -3,7 +3,19 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    sort_column = params[:sort] || 'title'
+    sort_direction = params[:direction] || 'asc'
+    
+    # Validate sort column to prevent injection
+    allowed_columns = ['title', 'rating', 'release_date']
+    sort_column = 'title' unless allowed_columns.include?(sort_column)
+    
+    # Validate sort direction
+    sort_direction = 'asc' unless ['asc', 'desc'].include?(sort_direction)
+    
+    @movies = Movie.order("#{sort_column} #{sort_direction}")
+    @sort_column = sort_column
+    @sort_direction = sort_direction
   end
 
   # GET /movies/1 or /movies/1.json
@@ -25,7 +37,8 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: "Movie was successfully created." }
+        sort_params = { sort: params[:sort], direction: params[:direction] }.compact
+        format.html { redirect_to movies_path(sort_params), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,7 +65,8 @@ class MoviesController < ApplicationController
     @movie.destroy!
 
     respond_to do |format|
-      format.html { redirect_to movies_path, notice: "Movie was successfully destroyed.", status: :see_other }
+      sort_params = { sort: params[:sort], direction: params[:direction] }.compact
+      format.html { redirect_to movies_path(sort_params), notice: "Movie was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
   end
